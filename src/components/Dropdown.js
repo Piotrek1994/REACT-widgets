@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react'
 
 const Dropdown = ({ optionsProp, selectedProp, setSelectedProp }) => {
 	const [open, setOpen] = useState(false)
-    const ref = useRef()
+	const ref = useRef()
 
 	useEffect(() => {
 		document.body.addEventListener(
-			'click',
-			() => {
+			'click',(event) => {
+                if (ref.current.contains(event.target)){
+                    return;
+                }
 				setOpen(false)
 			},
 			{ capture: true }
